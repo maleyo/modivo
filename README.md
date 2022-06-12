@@ -7,6 +7,7 @@ git clone https://github.com/maleyo/modivo.git or download ZIP from github
 # Prerequisities:
 Google Chrome installed(version 102.0.5005.115)
 python3 installed, pip installed
+System Environment - Windows
 
 # Before tests run:
 
