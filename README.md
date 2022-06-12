@@ -15,3 +15,6 @@ pip install html-testRunner
 
 # Run tests with:
 python main.py
+
+# HTML results:
+Results are stored in /Results folder
