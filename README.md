@@ -5,13 +5,13 @@ Modivo Automation Test
 git clone https://github.com/maleyo/modivo.git or download ZIP from github
 
 # Prerequisities:
-Google Chrome installed(version 102.0.5005.115)__
-python3 installed, pip installed__
+Google Chrome installed(version 102.0.5005.115) <br />
+python3 installed, pip installed <br />
 System Environment - Windows
 
 # Before tests run:
 
-pip install selenium__
+pip install selenium <br />
 pip install html-testRunner
 
 # Run tests with:
