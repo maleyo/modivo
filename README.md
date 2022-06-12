@@ -2,7 +2,7 @@
 Modivo Automation Test
 
 # Download git repository:
-git clone https://github.com/maleyo/modivo.git
+git clone https://github.com/maleyo/modivo.git or download ZIP from github
 
 # Prerequisities:
 Google Chrome installed(version 102.0.5005.115)
