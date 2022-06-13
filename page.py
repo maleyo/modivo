@@ -97,7 +97,7 @@ class MainPage(BasePage):
         except (NoSuchElementException, TimeoutException):
             WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(MainPageLocators.PRICE_2))
             element = self.driver.find_element(*MainPageLocators.PRICE_2)
-        return element.text
+        return element.text.replace(' ', '')
 
     def go_to_shopping_cart(self):
         WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(MainPageLocators.ADD_TO_CART_BUTTON))
@@ -119,8 +119,8 @@ class MainPage(BasePage):
             WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(MainPageLocators.SHOW_CART))
         except TimeoutException:
             try:
-                element = self.driver.find_element(*MainPageLocators.ERROR_MESSAGE)
-                raise Exception("Can't add to cart. The error message appears.")
+                WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(MainPageLocators.ERROR_MESSAGE))
+                raise TimeoutException("Can't add to cart. The error message appears.")
             except NoSuchElementException:
                 raise Exception("Something goes wrong.")
 
@@ -130,7 +130,7 @@ class MainPage(BasePage):
     def check_if_price_equal(self, price):
         WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(MainPageLocators.PRICE_CONFIRMATION))
         element = self.driver.find_element(*MainPageLocators.PRICE_CONFIRMATION)
-        return element.text == price
+        return element.text.replace(' ', '') == price
 
 
 class CheckoutPage(BasePage):
@@ -145,7 +145,7 @@ class CheckoutPage(BasePage):
     def check_if_price_equal(self, price):
         WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(CheckoutPageLocators.PRICE_CONFIRMATION))
         element = self.driver.find_element(*CheckoutPageLocators.PRICE_CONFIRMATION)
-        return element.text == price
+        return element.text.replace(' ', '') == price
 
     def fill_information_about_customer(self):
         WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(CheckoutPageLocators.EMAIL_INPUT))
@@ -186,7 +186,9 @@ class PayuPage(BasePage):
     def check_if_price_equal(self, price):
         WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(PayuPageLocators.PRICE))
         element = self.driver.find_element(*PayuPageLocators.PRICE)
-        return element.text == price
+        payu_page = element.text.replace('.', ',')
+        payu_page = payu_page.replace(' ', '')
+        return payu_page == price
 
     def fill_card_options(self):
         WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(PayuPageLocators.PAY_WITH_CARD))
