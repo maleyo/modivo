@@ -39,8 +39,8 @@ class ModivoTest(unittest.TestCase):
         checkout_page = page.CheckoutPage(self.driver)
         # Go to shop
         checkout_page.go_to_shop()
-        # Check if pric equal
-        checkout_page.check_if_price_equal(cloth_price)
+        # Check if price equal
+        self.assertTrue(checkout_page.check_if_price_equal(cloth_price), "Price doesn't match")
         # Fill information about customer
         checkout_page.fill_information_about_customer()
         # Choose payment and confirm
@@ -49,11 +49,11 @@ class ModivoTest(unittest.TestCase):
         # Load Payu page
         payu_page = page.PayuPage(self.driver)
         # Check if price equal
-        payu_page.check_if_price_equal(cloth_price)
+        self.assertTrue(payu_page.check_if_price_equal(cloth_price), "Price doesn't match")
         # Fill Card information
         payu_page.fill_card_options()
         # Check if authorization failed
-        payu_page.is_authorization_failed()
+        self.assertTrue(payu_page.is_authorization_failed(), "Authorization not failed.")
         # Exit from payment
         payu_page.exit_from_payment()
 
